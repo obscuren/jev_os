@@ -28,20 +28,20 @@ pub fn clear_screen() {
 pub enum Color {
     Black       = 0,
     Blue        = 1,
-    Green       = 3,
-    Cyan        = 4,
-    Red         = 5,
-    Magenta     = 6,
-    Brown       = 7,
-    LightGray   = 8,
-    DarkGrag    = 9,
-    LightBlue   = 10,
-    LightGreen  = 11,
-    LightCyan   = 12,
-    LightRed    = 13,
-    LightMagenta = 14,
-    Yellow      = 15,
-    White       = 16,
+    Green       = 2,
+    Cyan        = 3,
+    Red         = 4,
+    Magenta     = 5,
+    Brown       = 6,
+    LightGray   = 7,
+    DarkGray    = 8,
+    LightBlue   = 9,
+    LightGreen  = 10,
+    LightCyan   = 11,
+    LightRed    = 12,
+    LightMagenta = 13,
+    Yellow      = 14,
+    White       = 15,
 }
 
 #[derive(Copy, Clone)]
@@ -94,7 +94,7 @@ impl Writer {
 
                 self.buffer().chars[row][col] = ScreenChar {
                     ascii_character: byte,
-                    color_code: ColorCode::new(Color::LightGreen, Color::Black),
+                    color_code: self.color_code,
                 };
                 self.column_position += 1;
             }
