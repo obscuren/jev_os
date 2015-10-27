@@ -1,25 +1,31 @@
 #![feature(no_std, lang_items)]
 #![no_std]
 
+#![feature(const_fn)]
+#![feature(unique)]
+#![feature(core_str_ext)]
+
 extern crate rlibc;
+extern crate spin;
+
+#[macro_use]
+mod vga_buffer;
 
 #[no_mangle]
 pub extern fn rust_main() {
-    // ATTENTION: we have a very small stack and no guard page
-    let hello = b"Hello world";
-    let color_byte = 0x1f; // white foreground, blue background
+    vga_buffer::clear_screen();
 
-    let mut hello_colored = [color_byte; 24];
-    for(i, char_byte) in hello.into_iter().enumerate() {
-        hello_colored[i*2] = *char_byte;
-    }
-
-    // write `hello world!` to the center of the VGA text buffer
-    let buffer_ptr = (0xb8000 + 1988) as *mut _;
-    unsafe { *buffer_ptr = hello_colored };
+    println!("       _ ________      __   ____   _____");
+    println!("      | |  ____\\ \\    / /  / __ \\ / ____|");
+    println!("      | | |__   \\ \\  / /  | |  | | (___  ");
+    println!("  _   | |  __|   \\ \\/ /   | |  | |\\___ \\ ");
+    println!(" | |__| | |____   \\  /    | |__| |____) |");
+    println!("  \\____/|______|   \\/      \\____/|_____/ ");
 
     loop{}
 }
 
-#[lang = "eh_personality"] extern fn eh_personality() {}
-#[lang = "panic_fmt"] extern fn panic_fmt() -> ! {loop{}}
+#[lang = "eh_personality"]
+extern fn eh_personality() {}
+#[lang = "panic_fmt"]
+extern fn panic_fmt() -> ! {loop{}}
