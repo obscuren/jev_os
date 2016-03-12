@@ -2,9 +2,15 @@
 name = "jev_os"
 version = "0.1.0"
 dependencies = [
+ "multiboot2 0.1.0 (git+https://github.com/phil-opp/multiboot2-elf64)",
  "rlibc 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "spin 0.3.4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "multiboot2"
+version = "0.1.0"
+source = "git+https://github.com/phil-opp/multiboot2-elf64#76f6fc4c16aca005c264ea4ae7732a2f206387e5"
 
 [[package]]
 name = "rlibc"

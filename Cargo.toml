@@ -9,3 +9,6 @@ crate-type = ["staticlib"]
 [dependencies]
 rlibc = "*"
 spin = "*"
+
+[dependencies.multiboot2]
+git = "https://github.com/phil-opp/multiboot2-elf64"
